@@ -23,7 +23,7 @@ class HeaderPage(BasePage):
 
     @allure.step("Нажать на кнопку 'Выход'")
     def click_logout(self):
-        self.driver.find_element(*HeaderPageLocators.LOGOUT_BUTTON).click()
+        self.click(HeaderPageLocators.LOGOUT_BUTTON)
 
     @allure.step("Проверить видимость кнопки 'Выход'")
     def is_logout_visible(self, timeout=5):

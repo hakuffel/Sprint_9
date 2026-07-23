@@ -22,13 +22,11 @@ class RecipePage(BasePage):
 
     @allure.step("Ввести время приготовления")
     def set_cooking_time(self):
-        field = self.driver.find_element(*RecipePageLocators.COOKING_TIME_INPUT)
-        field.send_keys(str(random.randint(5, 200)))
+        self.send_keys(RecipePageLocators.COOKING_TIME_INPUT, str(random.randint(5, 200)))
 
     @allure.step("Ввести описание рецепта")
     def set_description(self):
-        field = self.driver.find_element(*RecipePageLocators.DESCRIPTION_TEXTAREA)
-        field.send_keys('Очень вкусный рецепт для теста')
+        self.send_keys(RecipePageLocators.DESCRIPTION_TEXTAREA,'Очень вкусный рецепт для теста')
 
     @allure.step("Загрузить фото рецепта")
     def upload_image(self):
@@ -37,8 +35,7 @@ class RecipePage(BasePage):
         else:
             file_path = str(APP_DIR / 'attach' / RECIPE_IMAGE)
 
-        image_input = self.driver.find_element(*RecipePageLocators.IMAGE_INPUT)
-        image_input.send_keys(file_path)
+        self.send_keys(RecipePageLocators.IMAGE_INPUT, file_path)
 
     @allure.step("Добавить ингредиент из списка")
     def add_ingredient(self, timeout=10):
@@ -48,14 +45,12 @@ class RecipePage(BasePage):
         first_option = self.wait_until_clickable(RecipePageLocators.FIRST_INGREDIENT_OPTION, timeout)
         first_option.click()
 
-        grams_field = self.driver.find_element(*RecipePageLocators.INGREDIENT_GRAMS_INPUT)
-        grams_field.send_keys(INGREDIENT_GRAMS)
-
-        self.driver.find_element(*RecipePageLocators.ADD_INGREDIENT_BUTTON).click()
+        self.send_keys(RecipePageLocators.INGREDIENT_GRAMS_INPUT, INGREDIENT_GRAMS)
+        self.click(RecipePageLocators.ADD_INGREDIENT_BUTTON)
 
     @allure.step("Нажать на кнопку 'Создать рецепт'")
     def click_create_recipe_button(self):
-        self.driver.find_element(*RecipePageLocators.CREATE_RECIPE_BUTTON).click()
+        self.click(RecipePageLocators.CREATE_RECIPE_BUTTON)
 
     @allure.step("Проверить отображение карточки созданного рецепта")
     def is_recipe_card_displayed(self, timeout=10):

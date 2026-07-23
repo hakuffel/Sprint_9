@@ -14,12 +14,11 @@ class LoginPage(BasePage):
 
     @allure.step("Заполнить пароль")
     def set_password(self, password):
-        field = self.driver.find_element(*LoginPageLocators.PASSWORD_INPUT)
-        field.send_keys(password)
+        self.send_keys(LoginPageLocators.PASSWORD_INPUT, password)
 
     @allure.step("Нажать на кнопку 'Войти'")
     def click_login_button(self):
-        self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+        self.click(LoginPageLocators.LOGIN_BUTTON)
 
     @allure.step("Дождаться перехода на главную страницу")
     def wait_until_redirected_to_recipes(self, timeout=10):
