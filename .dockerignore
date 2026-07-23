@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.git/
+.gitignore
+README.md
+allure-results/
+.venv/
+venv/
+.env
+.pytest_cache/
+.github/
